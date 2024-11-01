@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Homeal</string>
+    <string-array name="store_categories">
+        <item>Fruits &amp; Vegetable</item>
+        <item>Dairy Products</item>
+        <item>Bakery &amp; Bread</item>
+        <item>Meat &amp; Seafood</item>
+        <item>Beverages</item>
+        <item>Condiments &amp; Sauces</item>
+    </string-array>
 </resources>

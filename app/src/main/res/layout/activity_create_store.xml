@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/login_background"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="100dp"
+        >
+
+        <TextView
+            android:id="@+id/tvCreateStoreTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Your Store"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/etStoreName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Store Name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etStoreAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Store Address"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etStoreDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Store Description"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"
+            android:minLines="3"/>
+
+        <EditText
+            android:id="@+id/etStoreContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contact Number"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerStoreCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:entries="@array/store_categories"/>
+
+        <Button
+            android:id="@+id/btnSubmitStore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Store"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"/>
+
+    </LinearLayout>
+</ScrollView>

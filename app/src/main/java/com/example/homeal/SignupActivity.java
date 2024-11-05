@@ -37,13 +37,13 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        // Get user input
+
         String userName = name.getText().toString().trim();
         String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userConfirmPassword = confirmPassword.getText().toString().trim();
 
-        // Validate input
+
         if (userName.isEmpty()) {
             name.setError("Name is required");
             name.requestFocus();

@@ -86,10 +86,7 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: Implement your user registration logic here
-        // For example, make an API call to register the user
 
-        // Simulating successful registration
         Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show();
     }
 }

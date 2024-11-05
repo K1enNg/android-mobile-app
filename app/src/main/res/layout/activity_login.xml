@@ -59,17 +59,30 @@
         android:backgroundTint="@android:color/black"
         android:textColor="@android:color/white"/>
 
-
-    <Button
-        android:id="@+id/btnSignup"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign Up"
-        android:textSize="14sp"
-        android:backgroundTint="@android:color/transparent"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:clickable="true"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? "
+            android:textSize="14sp"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"/>
+        <TextView
+            android:id="@+id/Signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textSize="14sp"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/white"
+            android:clickable="true"/>
+    </LinearLayout>
 
 </LinearLayout>

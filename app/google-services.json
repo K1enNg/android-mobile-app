@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1048524049214",
+    "firebase_url": "https://homeal-app-fb30a-default-rtdb.firebaseio.com",
     "project_id": "homeal-app-fb30a",
     "storage_bucket": "homeal-app-fb30a.firebasestorage.app"
   },

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1048524049214",
+    "project_id": "homeal-app-fb30a",
+    "storage_bucket": "homeal-app-fb30a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048524049214:android:b3ed40eaa3dcd0f3e5ba6f",
+        "android_client_info": {
+          "package_name": "com.example.homeal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPvOozxAoxIc3rJAvU7PNrTzsdFGENiA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

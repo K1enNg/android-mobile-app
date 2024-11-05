@@ -35,7 +35,7 @@
         android:textColorHint="@color/white"
         android:inputType="textEmailAddress"
         android:padding="10dp"
-        android:marginTop="20dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@android:color/white"
         android:textColor="@color/white"/>
 
@@ -47,7 +47,7 @@
         android:inputType="textPassword"
         android:textColorHint="@color/white"
         android:padding="10dp"
-        android:marginTop="10dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/white"/>
 
     <Button

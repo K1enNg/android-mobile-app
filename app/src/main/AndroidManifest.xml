@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Homeal"
         tools:targetApi="31">
         <activity
+            android:name=".SellerManageStoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity

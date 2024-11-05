@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">HoMeal</string>
     <string-array name="store_categories">
         <item>Fruits &amp; Vegetable</item>
         <item>Dairy Products</item>

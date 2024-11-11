@@ -14,11 +14,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class LoginActivity extends AppCompatActivity {
 
+    //defining views and database
     EditText etEmail, etPassword;
     Button btnLogin;
     TextView Signup;
+    DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +31,14 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
+        //initializing views
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         Signup = findViewById(R.id.Signup);
+
+        //initializing database
+        database = FirebaseDatabase.getInstance().getReference("users");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

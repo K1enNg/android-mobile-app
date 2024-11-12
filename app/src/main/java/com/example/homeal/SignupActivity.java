@@ -1,11 +1,16 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +18,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
+
 public class SignupActivity extends AppCompatActivity {
     EditText confirmPassword, name, email, password;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +33,7 @@ public class SignupActivity extends AppCompatActivity {
         email = findViewById(R.id.etSignupEmail);
         password = findViewById(R.id.etSignupPassword);
         confirmPassword = findViewById(R.id.etSignupConfirmPassword);
+        mAuth = FirebaseAuth.getInstance();
 
         Button registerButton = findViewById(R.id.btnSignup);
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +95,42 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        mAuth.createUserWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
 
-        Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+
+                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+
+
+                            HashMap<String, Object> userData = new HashMap<>();
+                            userData.put("userType", "buyer");
+                            userData.put("store", null);
+
+
+                            userRef.setValue(userData).addOnCompleteListener(saveTask -> {
+                                if (saveTask.isSuccessful()) {
+                                    Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                    finish();
+                                } else {
+                                    Toast.makeText(SignupActivity.this, "Failed to save additional data", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } else {
+
+                        Toast.makeText(SignupActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+
     }
+
+
 }

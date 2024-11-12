@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/searchContainer"
@@ -15,13 +14,11 @@
         android:gravity="center_vertical">
 
         <EditText
-
             android:id="@+id/etSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Search for products..."
-            android:background="@drawable/search_bar_bg"
             android:padding="12dp"
             android:drawablePadding="8dp"
             android:textSize="16sp" />
@@ -36,7 +33,6 @@
             android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <!-- Browse Products Button -->
     <Button
         android:id="@+id/btnBrowseProducts"
         android:layout_width="wrap_content"
@@ -48,7 +44,6 @@
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true" />
 
-    <!-- Recommended Stores Section -->
     <TextView
         android:id="@+id/tvRecommendedStores"
         android:layout_width="wrap_content"
@@ -61,12 +56,21 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp" />
 
-    <!-- RecyclerView for Recommended Stores -->
+    <!-- SupportMapFragment for the map -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/tvRecommendedStores"
+        android:layout_marginTop="16dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRecommendedStores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tvRecommendedStores"
+        android:layout_below="@id/map"
         android:layout_margin="8dp"
         android:padding="8dp"
         android:clipToPadding="false"

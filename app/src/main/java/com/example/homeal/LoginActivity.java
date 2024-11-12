@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button btnLogin;
     TextView Signup;
+    TextView ResetPassword;
     FirebaseAuth auth;
     DatabaseReference database;
 
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         Signup = findViewById(R.id.Signup);
+        ResetPassword = findViewById(R.id.ResetPassword);
 
         //initializing firebase
         auth = FirebaseAuth.getInstance();
@@ -62,6 +64,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
                 startActivity(intent);
             }
         });

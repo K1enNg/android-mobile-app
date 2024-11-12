@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Your Store"
+            android:textColorHint="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
@@ -29,6 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Store Name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:layout_marginBottom="16dp"/>
@@ -38,6 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Store Address"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="textPostalAddress"
             android:padding="10dp"
             android:layout_marginBottom="16dp"/>
@@ -48,6 +53,8 @@
             android:layout_height="wrap_content"
             android:hint="Store Description"
             android:inputType="textMultiLine"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:padding="10dp"
             android:layout_marginBottom="16dp"
             android:minLines="3"/>
@@ -58,7 +65,9 @@
             android:layout_height="wrap_content"
             android:hint="Contact Number"
             android:inputType="phone"
+            android:textColor="@color/white"
             android:padding="10dp"
+            android:textColorHint="@color/white"
             android:layout_marginBottom="16dp"/>
 
         <Spinner

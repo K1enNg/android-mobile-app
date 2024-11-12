@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     //redirection based on user type
                     if ("buyer".equals(userType)){
-                        Intent intent = new Intent(LoginActivity.this, BrowseProductActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, BuyerMainActivity.class);
                         startActivity(intent);
                     }
                     else if ("seller".equals(userType)){

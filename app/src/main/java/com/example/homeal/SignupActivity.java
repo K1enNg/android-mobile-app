@@ -6,6 +6,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +25,17 @@ import java.util.HashMap;
 public class SignupActivity extends AppCompatActivity {
     EditText confirmPassword, name, email, password;
     private FirebaseAuth mAuth;
+    RadioGroup radioGroupRole;
+    RadioButton radioSeller, radioBuyer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
+
+        radioGroupRole = findViewById(R.id.radioGroupRole);
+        radioSeller = findViewById(R.id.radioSeller);
+        radioBuyer = findViewById(R.id.radioBuyer);
 
         name = findViewById(R.id.etSignupName);
         email = findViewById(R.id.etSignupEmail);
@@ -51,7 +59,19 @@ public class SignupActivity extends AppCompatActivity {
         String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userConfirmPassword = confirmPassword.getText().toString().trim();
+        int selectedId = radioGroupRole.getCheckedRadioButtonId();
+        String selectedRole;
 
+
+        if (selectedId != -1) { // -1 means no selection
+            RadioButton selectedRadioButton = findViewById(selectedId);
+            selectedRole = selectedRadioButton.getText().toString().toLowerCase();
+            Toast.makeText(this, "Selected Role: " + selectedRole, Toast.LENGTH_SHORT).show();
+        } else {
+            selectedRole = "";
+            Toast.makeText(this, "No role selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (userName.isEmpty()) {
             name.setError("Name is required");
@@ -106,7 +126,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
                             HashMap<String, Object> userData = new HashMap<>();
-                            userData.put("userType", "buyer");
+                            userData.put("userType", selectedRole);
                             userData.put("store", null);
 
 

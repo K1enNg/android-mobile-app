@@ -1,6 +1,8 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,5 +17,11 @@ public class SellerManageStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_seller_manage_store);
+    }
+
+    // Method for handling the Add Products button click
+    public void onAddProductClick(View view) {
+        Intent intent = new Intent(SellerManageStoreActivity.this, AddProductActivity.class);
+        startActivity(intent);
     }
 }

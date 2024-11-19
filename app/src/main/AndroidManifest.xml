@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!--Add the user-permission in order to access the internet and location services.-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Add the user-permission in order to access the internet and location services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homeal"
         tools:targetApi="31">
-
-        <!--Key for Google Maps API-->
+        <activity
+            android:name=".StoreInfo"
+            android:exported="false" />
+        <!-- Key for Google Maps API -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC0wq85Uu8M9dcVGoWdOeB0ql8nvXX-sTw" />

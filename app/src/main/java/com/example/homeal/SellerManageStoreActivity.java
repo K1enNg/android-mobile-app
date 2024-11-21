@@ -29,6 +29,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
     ProductManageStoreAdapter adapter;
     FirebaseAuth auth;
     DatabaseReference database;
+    String storeId = getIntent().getStringExtra("STORE");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
         btnManageInfo = findViewById(R.id.btnManageInfo);
         btnAddProduct = findViewById(R.id.btnAddProduct);
         productList = findViewById(R.id.productList);
+
 
         adapter = new ProductManageStoreAdapter();
         productList.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +56,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SellerManageStoreActivity.this, StoreInfo.class);
+                intent.putExtra("STORE", storeId);
                 startActivity(intent);
             }
         });
@@ -71,7 +74,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
 
     private void updateRecycle(){
 
-        String storeId = getIntent().getStringExtra("STORE");
+
         if (storeId != null) {
             database.child(storeId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

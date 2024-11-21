@@ -8,7 +8,7 @@
     android:background="@drawable/login_background">
 
     <TextView
-        android:id="@+id/StoreName"
+        android:id="@+id/tvStoreName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Manage Your Store"
@@ -37,43 +37,12 @@
         android:backgroundTint="@android:color/black"
         android:textColor="@android:color/white"
         android:padding="12dp"
-        android:onClick="onAddProductClick" />
+        android:onClick="onAddProductClick"
+        android:layout_marginBottom="24dp"/>
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="4dp">
-
-        <TextView
-            android:id="@+id/tvProductInfo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Product Name - $Price"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:paddingEnd="8dp" />
-
-        <Button
-            android:id="@+id/btnEditProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btnDeleteProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (store != null) {
                             Intent intent = new Intent(LoginActivity.this, SellerManageStoreActivity.class);
+                            intent.putExtra("STORE", store);
                             startActivity(intent);
                         } else {
                             Intent intent = new Intent(LoginActivity.this, CreateStoreActivity.class);

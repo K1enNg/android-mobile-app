@@ -118,8 +118,15 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else if ("seller".equals(userType)){
-                        Intent intent = new Intent(LoginActivity.this, SellerManageStoreActivity.class);
-                        startActivity(intent);
+                        String store = snapshot.child("store").getValue(String.class);
+
+                        if (store != null) {
+                            Intent intent = new Intent(LoginActivity.this, SellerManageStoreActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, CreateStoreActivity.class);
+                            startActivity(intent);
+                        }
                     }
                     else {
                         Toast.makeText(LoginActivity.this, "Unknown user type", Toast.LENGTH_SHORT).show();

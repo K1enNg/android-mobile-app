@@ -2,6 +2,8 @@
     <string name="app_name">HoMeal</string>
     <string name="categories">Categories</string>
     <string-array name="store_categories">
+        <item>Select an option:</item>
+        <item>Groceries</item>
         <item>Fruits &amp; Vegetable</item>
         <item>Dairy Products</item>
         <item>Bakery &amp; Bread</item>

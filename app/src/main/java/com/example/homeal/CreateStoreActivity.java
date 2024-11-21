@@ -26,7 +26,6 @@ import java.util.HashMap;
 public class CreateStoreActivity extends AppCompatActivity {
 
     EditText etStoreName, etStoreAddress, etStoreDescription, etStoreContact;
-    Spinner spinnerStoreCategory;
     Button btnSubmitStore;
     DatabaseReference database;
     FirebaseAuth auth;
@@ -41,7 +40,6 @@ public class CreateStoreActivity extends AppCompatActivity {
         etStoreAddress = findViewById(R.id.etStoreAddress);
         etStoreDescription = findViewById(R.id.etStoreDescription);
         etStoreContact = findViewById(R.id.etStoreContact);
-        spinnerStoreCategory = findViewById(R.id.spinnerStoreCategory);
         btnSubmitStore = findViewById(R.id.btnSubmitStore);
 
         auth = FirebaseAuth.getInstance();
@@ -61,7 +59,7 @@ public class CreateStoreActivity extends AppCompatActivity {
         String storeDescription = etStoreDescription.getText().toString().trim();
         String storeContact = etStoreContact.getText().toString().trim();
 
-        if (storeName.isEmpty() || storeAddress.isEmpty() || storeDescription.isEmpty() || storeContact.isEmpty() || spinnerStoreCategory.getSelectedItemPosition() == 0) {
+        if (storeName.isEmpty() || storeAddress.isEmpty() || storeDescription.isEmpty() || storeContact.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -79,7 +77,6 @@ public class CreateStoreActivity extends AppCompatActivity {
                 storeData.put("storeAddress", storeAddress);
                 storeData.put("storeDescription", storeDescription);
                 storeData.put("storeContact", storeContact);
-                storeData.put("storeCategory", spinnerStoreCategory.getSelectedItem().toString());
 
                 database.child("stores").child(storeId).setValue(storeData).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

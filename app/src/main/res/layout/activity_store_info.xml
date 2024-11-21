@@ -38,15 +38,67 @@
         android:shadowDy="2"
         android:shadowRadius="4" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProductList"
+    <EditText
+        android:id="@+id/etStoreName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tvStoreName"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:hint="Store Name"
         android:clipToPadding="false"
         android:elevation="4dp"
         android:scrollbars="vertical" />
+
+    <EditText
+        android:id="@+id/etStoreAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreName"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="Store Address"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:scrollbars="vertical" />
+
+    <EditText
+        android:id="@+id/etStoreDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreAddress"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="Store Description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:scrollbars="vertical" />
+
+    <EditText
+        android:id="@+id/etStoreContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreDescription"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="Store Contact"
+        android:clipToPadding="false"
+        android:elevation="4dp"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btnUpdateStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreContact"
+        android:text="Update Store Info"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"/>
+
 </RelativeLayout>

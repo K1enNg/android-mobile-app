@@ -29,7 +29,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
     ProductManageStoreAdapter adapter;
     FirebaseAuth auth;
     DatabaseReference database;
-    String storeId = getIntent().getStringExtra("STORE");
+    String storeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
         btnManageInfo = findViewById(R.id.btnManageInfo);
         btnAddProduct = findViewById(R.id.btnAddProduct);
         productList = findViewById(R.id.productList);
-
+        storeId = getIntent().getStringExtra("STORE");
 
         adapter = new ProductManageStoreAdapter();
         productList.setLayoutManager(new LinearLayoutManager(this));

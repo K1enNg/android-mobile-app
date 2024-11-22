@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/main_them"
     android:padding="16dp">
 
-    <!-- Back Button -->
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="40dp"
@@ -17,10 +16,8 @@
         android:contentDescription="Back button"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground"
         android:padding="8dp" />
 
-    <!-- Store Name -->
     <TextView
         android:id="@+id/tvStoreName"
         android:layout_width="wrap_content"
@@ -47,9 +44,7 @@
         android:padding="8dp"
         android:textColor="@android:color/black"
         android:hint="Store Name"
-        android:clipToPadding="false"
-        android:elevation="4dp"
-        android:scrollbars="vertical" />
+        android:background="@drawable/rounded_edit_text_background" />
 
     <EditText
         android:id="@+id/etStoreAddress"
@@ -60,9 +55,7 @@
         android:padding="8dp"
         android:textColor="@android:color/black"
         android:hint="Store Address"
-        android:clipToPadding="false"
-        android:elevation="4dp"
-        android:scrollbars="vertical" />
+        android:background="@drawable/rounded_edit_text_background" />
 
     <EditText
         android:id="@+id/etStoreDescription"
@@ -75,9 +68,7 @@
         android:hint="Store Description"
         android:inputType="textMultiLine"
         android:minLines="3"
-        android:clipToPadding="false"
-        android:elevation="4dp"
-        android:scrollbars="vertical" />
+        android:background="@drawable/rounded_edit_text_background" />
 
     <EditText
         android:id="@+id/etStoreContact"
@@ -88,9 +79,7 @@
         android:padding="8dp"
         android:textColor="@android:color/black"
         android:hint="Store Contact"
-        android:clipToPadding="false"
-        android:elevation="4dp"
-        android:scrollbars="vertical" />
+        android:background="@drawable/rounded_edit_text_background" />
 
     <Button
         android:id="@+id/btnUpdateStore"
@@ -99,6 +88,7 @@
         android:layout_below="@id/etStoreContact"
         android:text="Update Store Info"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"/>
-
+        android:backgroundTint="@color/quantum_grey"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

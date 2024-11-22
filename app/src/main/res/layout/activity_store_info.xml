@@ -43,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="Store Name"
+        android:hint="@string/store_name"
         android:background="@drawable/rounded_edit_text_background" />
 
     <EditText
@@ -54,7 +54,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="Store Address"
+        android:hint="@string/store_address"
         android:background="@drawable/rounded_edit_text_background" />
 
     <EditText
@@ -65,7 +65,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="Store Description"
+        android:hint="@string/store_description"
         android:inputType="textMultiLine"
         android:minLines="3"
         android:background="@drawable/rounded_edit_text_background" />
@@ -78,7 +78,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="Store Contact"
+        android:hint="@string/store_contact"
         android:background="@drawable/rounded_edit_text_background" />
 
     <Button
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/etStoreContact"
-        android:text="Update Store Info"
+        android:text="@string/update_store_info"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/quantum_grey"
         android:textColor="@android:color/white"

@@ -30,14 +30,14 @@ public class StoreInfo extends AppCompatActivity {
     EditText etStoreName, etStoreAddress, etStoreDescription, etStoreContact;
     Button btnUpdateStore;
     DatabaseReference database;
-    String storeId = getIntent().getStringExtra("STORE");
+    String storeId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_store_info);
-
+        storeId = getIntent().getStringExtra("STORE");
         ivBack = findViewById(R.id.ivBack);
         tvStoreName = findViewById(R.id.tvStoreName);
         etStoreName = findViewById(R.id.etStoreName);

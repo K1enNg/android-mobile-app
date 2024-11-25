@@ -16,4 +16,5 @@
         <item>Beverages</item>
         <item>Condiments &amp; Sauces</item>
     </string-array>
+    <string name="google_maps_key">AIzaSyC0wq85Uu8M9dcVGoWdOeB0ql8nvXX-sTw</string>
 </resources>

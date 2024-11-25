@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,16 +64,15 @@ public class SellerManageStoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SellerManageStoreActivity.this, AddProductActivity.class);
+                intent.putExtra("STORE", storeId);
                 startActivity(intent);
             }
         });
 
-        updateRecycle();
+        updatePage();
     }
 
-    private void updateRecycle(){
-
-
+    private void updatePage(){
         if (storeId != null) {
             database.child(storeId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -82,6 +80,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
                     if (snapshot.exists()) {
                         String storeName = snapshot.child("storeName").getValue(String.class);
                         tvStoreName.setText(storeName);
+
                     } else {
                         Toast.makeText(SellerManageStoreActivity.this, "Store not found", Toast.LENGTH_SHORT).show();
                     }

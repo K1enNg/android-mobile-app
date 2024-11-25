@@ -1,5 +1,6 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class StoreInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_store_info);
-        storeId = getIntent().getStringExtra("STORE");
+
         ivBack = findViewById(R.id.ivBack);
         tvStoreName = findViewById(R.id.tvStoreName);
         etStoreName = findViewById(R.id.etStoreName);
@@ -45,8 +46,16 @@ public class StoreInfo extends AppCompatActivity {
         etStoreDescription = findViewById(R.id.etStoreDescription);
         etStoreContact = findViewById(R.id.etStoreContact);
         btnUpdateStore = findViewById(R.id.btnUpdateStore);
+        storeId = getIntent().getStringExtra("STORE");
 
         database = FirebaseDatabase.getInstance().getReference("stores");
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btnUpdateStore.setOnClickListener(new View.OnClickListener() {
             @Override

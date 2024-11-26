@@ -6,7 +6,6 @@
     android:background="@color/white"
     android:padding="16dp">
 
-    <!-- Product Details Section -->
     <LinearLayout
         android:id="@+id/llProductDetails"
         android:layout_width="match_parent"

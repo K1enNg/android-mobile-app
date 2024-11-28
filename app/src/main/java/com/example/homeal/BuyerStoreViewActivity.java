@@ -6,23 +6,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyerStoreViewActivity extends AppCompatActivity {
 
-    ImageView storeImage;
-    TextView storeName;
+    ImageView ivStoreImage;
+    TextView tvStoreName;
     ListView listView;
     Button btnLeaveStore;
     List<Product> productList;
@@ -36,8 +38,8 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_buyer_store_view);
 
-        storeImage = findViewById(R.id.ivStoreImage);
-        storeName = findViewById(R.id.tvStoreName);
+        ivStoreImage = findViewById(R.id.ivStoreImage);
+        tvStoreName = findViewById(R.id.tvStoreName);
         listView = findViewById(R.id.listView);
         btnLeaveStore = findViewById(R.id.btnLeaveStore);
         storeId = getIntent().getStringExtra("STORE");
@@ -56,11 +58,60 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
             }
         });
 
+        // Update the page content based on the store ID
         updatePage();
-
     }
 
     private void updatePage(){
+        if (storeId != null) {
+            database.child("stores").child(storeId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        String storeName = snapshot.child("storeName").getValue(String.class);
+                        tvStoreName.setText(storeName);
 
+                        for (DataSnapshot productSnapshot : snapshot.child("products").getChildren()) {
+                            String productId = productSnapshot.getKey();
+                            if (productId != null){
+                                updateList(productId);
+                            }
+                        }
+                    } else {
+                        Toast.makeText(BuyerStoreViewActivity.this, "Store not found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(BuyerStoreViewActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void updateList(String productId) {
+        database.child("products").child(productId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    String name = snapshot.child("name").getValue(String.class);
+                    double price = snapshot.child("price").getValue(Double.class);
+                    String description = snapshot.child("description").getValue(String.class);
+                    String id = snapshot.getKey();
+
+                    Product product = new Product(name, price, description);
+
+                    productList.add(product);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BuyerStoreViewActivity.this, "Error updating list: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

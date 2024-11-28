@@ -57,7 +57,6 @@ public class ManageProductInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateProduct();
-
             }
         });
 

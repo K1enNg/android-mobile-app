@@ -48,7 +48,7 @@ public class BuyerMainStoreAdapter extends ArrayAdapter<Store> {
         btnViewStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ManageProductInfoActivity.class);
+                Intent intent = new Intent(context, BuyerStoreViewActivity.class);
                 intent.putExtra("STORE", store.getStoreId());
                 context.startActivity(intent);
             }

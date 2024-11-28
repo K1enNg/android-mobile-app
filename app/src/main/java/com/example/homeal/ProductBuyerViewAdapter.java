@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +35,23 @@ public class ProductBuyerViewAdapter extends ArrayAdapter<Product> {
             convertView = LayoutInflater.from(context).inflate(R.layout.activity_item_product, parent, false);
         }
 
+        Product product = products.get(position);
 
+        TextView tvProductName = convertView.findViewById(R.id.tvProductName);
+        TextView tvProductDescription = convertView.findViewById(R.id.tvProductDescription);
+        TextView tvProductPrice = convertView.findViewById(R.id.tvProductPrice);
+        Button btnAddToCart = convertView.findViewById(R.id.btnAddToCart);
 
+        tvProductName.setText(product.getName());
+        tvProductDescription.setText(product.getDescription());
+        tvProductPrice.setText("$" + product.getPrice());
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return convertView;
     }
 }

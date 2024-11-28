@@ -38,8 +38,6 @@ public class SellerManageStoreActivity extends AppCompatActivity {
     DatabaseReference database;
     String storeId;
 
-    private ActivityResultLauncher<Intent> activityResultLauncher;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

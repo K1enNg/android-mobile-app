@@ -206,7 +206,7 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(BuyerMainActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

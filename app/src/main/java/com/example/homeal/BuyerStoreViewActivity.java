@@ -12,6 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BuyerStoreViewActivity extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
     List<Product> productList;
     ProductBuyerViewAdapter adapter;
     DatabaseReference database;
+    FirebaseAuth auth;
     String storeId;
 
     @Override
@@ -46,9 +49,11 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
 
         // Initialize Firebase database reference
         database = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+
 
         productList = new ArrayList<>();
-        adapter = new ProductBuyerViewAdapter(this, productList);
+        adapter = new ProductBuyerViewAdapter(this, productList, auth.getUid(), database);
         listView.setAdapter(adapter);
 
         btnLeaveStore.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +106,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
                     String description = snapshot.child("description").getValue(String.class);
                     String id = snapshot.getKey();
 
-                    Product product = new Product(name, price, description);
+                    Product product = new Product(name, price, description, id, storeId);
 
                     productList.add(product);
                     adapter.notifyDataSetChanged();

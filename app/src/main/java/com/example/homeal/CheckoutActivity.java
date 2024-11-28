@@ -1,5 +1,6 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -30,12 +31,19 @@ public class CheckoutActivity extends AppCompatActivity {
     private PaymentSheet paymentSheet;
     private String clientSecret;
     private Stripe stripe;
+    String amount;
+    int int_amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_checkout);
+
+        Intent intent = getIntent();
+        if (intent != null){
+            amount = intent.getStringExtra("amount");
+        }
 
 
         PaymentConfiguration.init(
@@ -61,7 +69,10 @@ public class CheckoutActivity extends AppCompatActivity {
         String backendUrl = "http://10.0.2.2:4242/create-payment-intent"; // Replace with your backend endpoint
 
         HashMap<String, Object> payload = new HashMap<>();
-        payload.put("amount", 2000); // Amount in cents (e.g., $20.00)
+        int_amount = Integer.parseInt(amount);
+        int_amount *= 100;
+        amount = Integer.toString(int_amount);
+        payload.put("amount", amount); // Amount in cents (e.g., $20.00)
         payload.put("currency", "usd");
 
         JSONObject jsonPayload = new JSONObject(payload);

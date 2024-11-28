@@ -28,7 +28,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
     ImageView ivStoreImage;
     TextView tvStoreName;
     ListView listView;
-    Button btnLeaveStore;
+    Button btnChekout, btnLeaveStore;
     List<Product> productList;
     ProductBuyerViewAdapter adapter;
     DatabaseReference database;
@@ -44,6 +44,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
         ivStoreImage = findViewById(R.id.ivStoreImage);
         tvStoreName = findViewById(R.id.tvStoreName);
         listView = findViewById(R.id.listView);
+        btnChekout = findViewById(R.id.btnCheckout);
         btnLeaveStore = findViewById(R.id.btnLeaveStore);
         storeId = getIntent().getStringExtra("STORE");
 
@@ -55,6 +56,13 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
         productList = new ArrayList<>();
         adapter = new ProductBuyerViewAdapter(this, productList, auth.getUid(), database);
         listView.setAdapter(adapter);
+
+        btnChekout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         btnLeaveStore.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,8 +3,11 @@ package com.example.homeal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import android.location.Address;
 
 public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private Button btnViewOrders, btnLogOff;
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
@@ -48,6 +52,9 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_main);
+
+        btnViewOrders = findViewById(R.id.btnViewOrders);
+        btnLogOff = findViewById(R.id.btnLogOff);
 
         //initializing store display components
         listView = findViewById(R.id.listView);
@@ -105,6 +112,22 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
 
             // Store items logic
             updateListView();
+
+            // View orders button
+            btnViewOrders.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(BuyerMainActivity.this, BuyerOrdersActivity.class);
+                }
+            });
+
+            // Logoff button
+            btnLogOff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 

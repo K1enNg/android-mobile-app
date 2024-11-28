@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +35,10 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
 
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
+    private FirebaseAuth auth;
+    private ListView listView;
+    BuyerMainStoreAdapter adapter;
+    List<Store> storeList;
 
     // List to store store addresses and names
     private List<Map<String, String>> storeData = new ArrayList<>();
@@ -43,6 +49,12 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_main);
 
+        //initializing store display components
+        listView = findViewById(R.id.listView);
+        storeList = new ArrayList<>();
+        adapter = new BuyerMainStoreAdapter(this, storeList);
+        listView.setAdapter(adapter);
+
         // Initialize the map fragment
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -52,41 +64,48 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
 
         // Initialize Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("stores");
+        auth = FirebaseAuth.getInstance();
 
-        // Fetch store addresses and names from Firebase
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Clear the list to avoid duplicates
-                storeData.clear();
+        // Check if the user is logged in
+        if (auth.getCurrentUser() != null) {
+            // Fetch store addresses and names from Firebase
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // Clear the list to avoid duplicates
+                    storeData.clear();
 
-                // Load store data
-                for (DataSnapshot storeSnapshot : dataSnapshot.getChildren()) {
-                    String address = storeSnapshot.child("storeAddress").getValue(String.class);
-                    String name = storeSnapshot.child("storeName").getValue(String.class);
+                    // Load store data
+                    for (DataSnapshot storeSnapshot : dataSnapshot.getChildren()) {
+                        String address = storeSnapshot.child("storeAddress").getValue(String.class);
+                        String name = storeSnapshot.child("storeName").getValue(String.class);
 
-                    if (address != null && name != null) {
-                        Log.d(TAG, "Store found: " + name + " at address: " + address);
+                        if (address != null && name != null) {
+                            Log.d(TAG, "Store found: " + name + " at address: " + address);
 
-                        // Store address and name in a map
-                        Map<String, String> storeInfo = new HashMap<>();
-                        storeInfo.put("address", address);
-                        storeInfo.put("name", name);
-                        storeData.add(storeInfo);
+                            // Store address and name in a map
+                            Map<String, String> storeInfo = new HashMap<>();
+                            storeInfo.put("address", address);
+                            storeInfo.put("name", name);
+                            storeData.add(storeInfo);
+                        }
+                    }
+
+                    // Update the map after loading all data
+                    if (mMap != null) {
+                        updateMapMarkers();
                     }
                 }
 
-                // Update the map after loading all data
-                if (mMap != null) {
-                    updateMapMarkers();
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e(TAG, "Error accessing Firebase: " + databaseError.getMessage());
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "Error accessing Firebase: " + databaseError.getMessage());
-            }
-        });
+            // Store items logic
+            updateListView();
+        }
     }
 
     @Override
@@ -163,4 +182,33 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
         }
         return null;
     }
+
+    private void updateListView(){
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot storeSnapshot : snapshot.getChildren()){
+                        String storeId = storeSnapshot.getKey();
+                        String storeName = storeSnapshot.child("storeName").getValue(String.class);
+                        String storeAddress = storeSnapshot.child("storeAddress").getValue(String.class);
+                        String storeDescription = storeSnapshot.child("storeDescription").getValue(String.class);
+                        String storeContact = storeSnapshot.child("storeContact").getValue(String.class);
+
+                        Store store = new Store(storeId, storeName, storeAddress, storeDescription, storeContact);
+                        storeList.add(store);
+                        adapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toast.makeText(BuyerMainActivity.this, "No stores found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

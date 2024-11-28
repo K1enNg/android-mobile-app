@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Store header section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <!-- Store image -->
+        <ImageView
+            android:id="@+id/ivStoreImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/logo"
+            android:contentDescription="Store Image"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Store name -->
+        <TextView
+            android:id="@+id/tvStoreName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- List of items -->
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
+
+    <!-- Leave Store button -->
+    <Button
+        android:id="@+id/btnLeaveStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leave Store"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

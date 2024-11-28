@@ -66,14 +66,16 @@
         android:layout_below="@id/tvRecommendedStores"
         android:layout_marginTop="16dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewRecommendedStores"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/map"
         android:layout_margin="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginBottom="8dp"
         android:clipToPadding="false"
+        android:padding="8dp"
         android:scrollbars="vertical" />
 
 

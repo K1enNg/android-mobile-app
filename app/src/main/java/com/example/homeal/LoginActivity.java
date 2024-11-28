@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loginUser();
+                etEmail.setText("");
+                etPassword.setText("");
             }
         });
 

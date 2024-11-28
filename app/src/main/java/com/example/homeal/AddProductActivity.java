@@ -1,5 +1,6 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -55,7 +56,7 @@ public class AddProductActivity extends AppCompatActivity {
     private void addProductToFirebase() {
 
         String name = etProductName.getText().toString().trim();
-        String price = etProductPrice.getText().toString().trim();
+        double price = Double.parseDouble(etProductPrice.getText().toString().trim());
         String description = etProductDescription.getText().toString().trim();
 
 
@@ -63,7 +64,7 @@ public class AddProductActivity extends AppCompatActivity {
             etProductName.setError("Product name is required");
             return;
         }
-        if (TextUtils.isEmpty(price)) {
+        if (price <= 0) {
             etProductPrice.setError("Product price is required");
             return;
         }
@@ -77,18 +78,17 @@ public class AddProductActivity extends AppCompatActivity {
 
 
         if (productId != null) {
-            Product product = new Product(productId, name, Double.parseDouble(price), description);
+            Product product = new Product(name, price, description);
 
 
             database.child("products").child(productId).setValue(product).addOnSuccessListener(aVoid -> {
-                // Clear input fields
-                etProductName.setText("");
-                etProductPrice.setText("");
-                etProductDescription.setText("");
 
                 // Add product to store
                 database.child("stores").child(storeId).child("products").child(productId).setValue(true).addOnSuccessListener(aVoid1 -> {
                     Toast.makeText(AddProductActivity.this, "Product added to store successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddProductActivity.this, SellerManageStoreActivity.class);
+                    intent.putExtra("STORE", storeId);
+                    startActivity(intent);
                 }).addOnFailureListener(e -> Toast.makeText(AddProductActivity.this, "Failed to add product to store: " + e.getMessage(), Toast.LENGTH_SHORT).show());
 
             }).addOnFailureListener(e -> Toast.makeText(AddProductActivity.this, "Failed to add product: " + e.getMessage(), Toast.LENGTH_SHORT).show());

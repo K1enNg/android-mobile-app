@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
     implementation(libs.play.services.tasks)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -49,4 +50,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.0.2")
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.android.libraries.places:places:2.5.0")
+    implementation ("com.stripe:stripe-android:20.26.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+
+
 }

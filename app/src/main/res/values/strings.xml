@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">HoMeal</string>
+    <string name="categories">Categories</string>
+    <string name="update_store_info">Update Store Info</string>
+    <string name="store_contact">Store Contact</string>
+    <string name="store_description">Store Description</string>
+    <string name="store_address">Store Address</string>
+    <string name="store_name">Store Name</string>
     <string-array name="store_categories">
+        <item>Select an option:</item>
+        <item>Groceries</item>
         <item>Fruits &amp; Vegetable</item>
         <item>Dairy Products</item>
         <item>Bakery &amp; Bread</item>
@@ -8,4 +16,5 @@
         <item>Beverages</item>
         <item>Condiments &amp; Sauces</item>
     </string-array>
+    <string name="google_maps_key">AIzaSyC0wq85Uu8M9dcVGoWdOeB0ql8nvXX-sTw</string>
 </resources>

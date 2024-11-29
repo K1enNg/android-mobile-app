@@ -128,6 +128,7 @@ public class SignupActivity extends AppCompatActivity {
                             HashMap<String, Object> userData = new HashMap<>();
                             userData.put("userType", selectedRole);
                             userData.put("store", null);
+                            userData.put("cart",null);
 
 
                             userRef.setValue(userData).addOnCompleteListener(saveTask -> {

@@ -1,63 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/product_card_bg"
     android:layout_margin="8dp"
     android:elevation="4dp">
 
-<ImageView
-android:id="@+id/imgProduct"
-android:layout_width="80dp"
-android:layout_height="80dp"
-android:scaleType="centerCrop"
-android:layout_marginEnd="12dp"/>
-
     <LinearLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_weight="1">
-
-    <TextView
-        android:id="@+id/tvProductName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product Name"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="4dp" />
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
 
-    <TextView
-        android:id="@+id/tvProductDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Brief product description goes here."
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:maxLines="2"
-        android:ellipsize="end" />
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="16dp" />
 
-    <TextView
-        android:id="@+id/tvProductPrice"
-        android:layout_width="wrap_content"
+        <!-- Product Details (Name, Description, Price) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="Product Name"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvProductDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Description"
+                android:textSize="14sp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Quantity Control Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="$0.00"
-        android:textSize="16sp"
-        android:textColor="@android:color/holo_green_dark"
-        android:layout_marginTop="8dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/quantity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity:"
+            android:textSize="14sp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="75dp" />
+
+        <Button
+            android:id="@+id/btnQuantityMinus"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvQuantityValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnQuantityPlus"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="+" />
+    </LinearLayout>
+
+    <!-- Action Buttons (Add to Cart, Remove) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/btnAddToCart"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_weight="1"
             android:text="Add to Cart"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            android:textColor="@android:color/white"
-            android:paddingHorizontal="16dp" />
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnRemove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Remove" />
     </LinearLayout>
 </LinearLayout>

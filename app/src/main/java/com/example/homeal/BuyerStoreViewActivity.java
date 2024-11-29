@@ -1,21 +1,16 @@
 package com.example.homeal;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,59 +20,58 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class SellerManageStoreActivity extends AppCompatActivity {
+public class BuyerStoreViewActivity extends AppCompatActivity {
 
+    ImageView ivStoreImage;
     TextView tvStoreName;
-    Button btnManageInfo, btnAddProduct;
     ListView listView;
-    ProductManageStoreAdapter adapter;
+    Button btnChekout, btnLeaveStore;
     List<Product> productList;
-    FirebaseAuth auth;
+    ProductBuyerViewAdapter adapter;
     DatabaseReference database;
+    FirebaseAuth auth;
     String storeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_seller_manage_store);
+        setContentView(R.layout.activity_buyer_store_view);
 
+        ivStoreImage = findViewById(R.id.ivStoreImage);
         tvStoreName = findViewById(R.id.tvStoreName);
-        btnManageInfo = findViewById(R.id.btnManageInfo);
-        btnAddProduct = findViewById(R.id.btnAddProduct);
         listView = findViewById(R.id.listView);
+        btnChekout = findViewById(R.id.btnCheckout);
+        btnLeaveStore = findViewById(R.id.btnLeaveStore);
         storeId = getIntent().getStringExtra("STORE");
 
-        productList = new ArrayList<>();
+        // Initialize Firebase database reference
+        database = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
-        adapter = new ProductManageStoreAdapter(this,productList);
+
+        productList = new ArrayList<>();
+        adapter = new ProductBuyerViewAdapter(this, productList, auth.getUid(), database);
         listView.setAdapter(adapter);
 
-        // Initialize Firebase Authentication and database reference
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance().getReference();
-
-        // Set click listeners for the buttons
-        btnManageInfo.setOnClickListener(new View.OnClickListener() {
+        btnChekout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SellerManageStoreActivity.this, StoreInfo.class);
-                intent.putExtra("STORE", storeId);
-                startActivity(intent);
+
             }
         });
 
-        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+        btnLeaveStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SellerManageStoreActivity.this, AddProductActivity.class);
-                intent.putExtra("STORE", storeId);
-                startActivity(intent);
+                finish();
             }
         });
 
+        // Update the page content based on the store ID
         updatePage();
     }
 
@@ -97,13 +91,13 @@ public class SellerManageStoreActivity extends AppCompatActivity {
                             }
                         }
                     } else {
-                        Toast.makeText(SellerManageStoreActivity.this, "Store not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BuyerStoreViewActivity.this, "Store not found", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(SellerManageStoreActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BuyerStoreViewActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -129,9 +123,8 @@ public class SellerManageStoreActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SellerManageStoreActivity.this, "Error updating list: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(BuyerStoreViewActivity.this, "Error updating list: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }

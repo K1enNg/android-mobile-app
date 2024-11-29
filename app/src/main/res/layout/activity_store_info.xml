@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_them"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/backward_button"
+        android:contentDescription="Back button"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/tvStoreName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/ivBack"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Store Name"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4" />
+
+    <EditText
+        android:id="@+id/etStoreName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvStoreName"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="@string/store_name"
+        android:background="@drawable/rounded_edit_text_background" />
+
+    <EditText
+        android:id="@+id/etStoreAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreName"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="@string/store_address"
+        android:background="@drawable/rounded_edit_text_background" />
+
+    <EditText
+        android:id="@+id/etStoreDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreAddress"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="@string/store_description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:background="@drawable/rounded_edit_text_background" />
+
+    <EditText
+        android:id="@+id/etStoreContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreDescription"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:hint="@string/store_contact"
+        android:background="@drawable/rounded_edit_text_background" />
+
+    <Button
+        android:id="@+id/btnUpdateStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreContact"
+        android:text="@string/update_store_info"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/quantum_grey"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

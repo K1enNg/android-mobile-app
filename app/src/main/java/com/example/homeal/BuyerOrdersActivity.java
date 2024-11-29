@@ -8,12 +8,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ItemProductActivity extends AppCompatActivity {
+public class BuyerOrdersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_item_product);
+        setContentView(R.layout.activity_buyer_orders);
+
     }
 }

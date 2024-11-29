@@ -20,7 +20,7 @@
 
         <!-- Store Description -->
     <TextView
-    android:id="@+id/tvStoreDescription"
+    android:id="@+id/tvStoreInfo"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Store description goes here, describing what the store offers."

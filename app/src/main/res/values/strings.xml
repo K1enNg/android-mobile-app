@@ -17,4 +17,15 @@
         <item>Condiments &amp; Sauces</item>
     </string-array>
     <string name="google_maps_key">AIzaSyC0wq85Uu8M9dcVGoWdOeB0ql8nvXX-sTw</string>
+    <string name="total_amount">Total Amount: $15.00</string>
+    <string name="price_per_item">Price per item: $5.00</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="product_details">Product Details</string>
+    <string name="product_name_fresh_apples">Product Name: Fresh Apples</string>
+    <string name="product_name">"Product name: "</string>
+    <string name="quantity">Quantity: 3</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="payment_method">Select Payment Method</string>
+    <string name="total_price">Total Amount: $50.00</string>
+    <string name="total_price1">Total: $50.00</string>
 </resources>

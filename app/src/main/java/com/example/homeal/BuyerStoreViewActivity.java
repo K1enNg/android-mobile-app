@@ -1,5 +1,6 @@
 package com.example.homeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +61,8 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
         btnChekout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(BuyerStoreViewActivity.this, CheckoutActivity.class);
+                startActivity(intent);
             }
         });
 

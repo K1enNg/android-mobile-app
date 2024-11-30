@@ -97,8 +97,10 @@ public class ProductBuyerViewAdapter extends ArrayAdapter<Product> {
                                 int currentQuantity = itemSnapshot.child("quantity").getValue(Integer.class);
                                 int newQuantity = currentQuantity + Integer.parseInt(tvQuantityValue.getText().toString());
                                 itemSnapshot.getRef().child("quantity").setValue(newQuantity);
+                                Toast.makeText(context, "Item updated in cart", Toast.LENGTH_SHORT).show();
                             } else {
                                 cartRef.child(product.getId()).child("quantity").setValue(Integer.parseInt(tvQuantityValue.getText().toString()));
+                                Toast.makeText(context, "Item added in cart", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -125,6 +127,7 @@ public class ProductBuyerViewAdapter extends ArrayAdapter<Product> {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.hasChild(product.getId())) {
                                 cartRef.child(product.getId()).removeValue();
+                                Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 Toast.makeText(context, "Item is not in cart", Toast.LENGTH_SHORT).show();

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_them"
+    android:background="@drawable/store_background"
     android:padding="16dp">
 
+    <!-- Back Button -->
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="40dp"
@@ -18,6 +20,7 @@
         android:focusable="true"
         android:padding="8dp" />
 
+    <!-- Store Name Title -->
     <TextView
         android:id="@+id/tvStoreName"
         android:layout_width="wrap_content"
@@ -35,60 +38,105 @@
         android:shadowDy="2"
         android:shadowRadius="4" />
 
+    <!-- Store Name Label -->
+    <TextView
+        android:id="@+id/tvLabelStoreName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvStoreName"
+        android:text="Store Name"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Store Name Input -->
     <EditText
         android:id="@+id/etStoreName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvStoreName"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvLabelStoreName"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="@string/store_name"
+        android:hint="Enter Store Name"
         android:background="@drawable/rounded_edit_text_background" />
 
+    <!-- Store Address Label -->
+    <TextView
+        android:id="@+id/tvLabelStoreAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreName"
+        android:layout_marginTop="16dp"
+        android:text="Store Address"
+        android:textSize="16sp"
+        android:textColor="@android:color/white" />
+
+    <!-- Store Address Input -->
     <EditText
         android:id="@+id/etStoreAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etStoreName"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvLabelStoreAddress"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="@string/store_address"
+        android:hint="Enter Store Address"
         android:background="@drawable/rounded_edit_text_background" />
 
+    <!-- Store Description Label -->
+    <TextView
+        android:id="@+id/tvLabelStoreDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreAddress"
+        android:layout_marginTop="16dp"
+        android:text="Store Description"
+        android:textSize="16sp"
+        android:textColor="@android:color/white" />
+
+    <!-- Store Description Input -->
     <EditText
         android:id="@+id/etStoreDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etStoreAddress"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvLabelStoreDescription"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="@string/store_description"
+        android:hint="Enter Store Description"
         android:inputType="textMultiLine"
         android:minLines="3"
         android:background="@drawable/rounded_edit_text_background" />
 
+    <!-- Store Contact Label -->
+    <TextView
+        android:id="@+id/tvLabelStoreContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etStoreDescription"
+        android:layout_marginTop="16dp"
+        android:text="Store Contact"
+        android:textSize="16sp"
+        android:textColor="@android:color/white" />
+
+    <!-- Store Contact Input -->
     <EditText
         android:id="@+id/etStoreContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etStoreDescription"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvLabelStoreContact"
         android:padding="8dp"
         android:textColor="@android:color/black"
-        android:hint="@string/store_contact"
+        android:hint="Enter Store Contact"
         android:background="@drawable/rounded_edit_text_background" />
 
+    <!-- Update Button -->
     <Button
         android:id="@+id/btnUpdateStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/etStoreContact"
-        android:text="@string/update_store_info"
-        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Update Store Info"
         android:backgroundTint="@color/quantum_grey"
-        android:textColor="@android:color/white"
-        android:layout_centerHorizontal="true" />
+        android:textColor="@android:color/white" />
 </RelativeLayout>

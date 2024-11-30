@@ -28,4 +28,5 @@
     <string name="payment_method">Select Payment Method</string>
     <string name="total_price">Total Amount: $50.00</string>
     <string name="total_price1">Total: $50.00</string>
+    <string name="name1_tquantity_0_ttotal_0_nname2_quantity_0_total_0_nname2_quantity_0_total_0">Name1 quantity: 0 Total:0 \nName2 quantity: 0 Total:0 \nName2 quantity: 0 Total:0</string>
 </resources>

@@ -6,9 +6,12 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionScene;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.stripe.android.Stripe;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +45,9 @@ import okhttp3.Response;
 public class CheckoutActivity extends AppCompatActivity {
 
     TextView tvTotalPrice;
+    Button btnPayNow;
     ListView listView;
+    RadioGroup rgPaymentOptions;
     BuyerCartViewAdapter adapter;
     List<CartItem> cartItems;
 
@@ -52,7 +58,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private String clientSecret;
     private Stripe stripe;
     String amount;
-    Double int_amount = 0.0;
+    public Double int_amount = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +71,15 @@ public class CheckoutActivity extends AppCompatActivity {
         cartItems = new ArrayList<>();
         adapter = new BuyerCartViewAdapter(this, cartItems);
         listView.setAdapter(adapter);
+        rgPaymentOptions = findViewById(R.id.rgPaymentOptions);
+        btnPayNow = findViewById(R.id.btnPayNow);
+
+
 
         database = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
 
         if (auth.getUid() != null){
-            updateCartDisplay();
-
 
             PaymentConfiguration.init(
                     this,
@@ -85,8 +93,22 @@ public class CheckoutActivity extends AppCompatActivity {
 
             paymentSheet = new PaymentSheet(this, this::onPaymentResult);
 
-            Button btnPayNow = findViewById(R.id.btnPayNow);
-            btnPayNow.setOnClickListener(v -> fetchPaymentIntent());
+            updateCartDisplay();
+
+            btnPayNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int selectedRadioButtonId = rgPaymentOptions.getCheckedRadioButtonId();
+
+                    if (selectedRadioButtonId == R.id.rbCreditCard) {
+                        fetchPaymentIntent();
+                    } else if (selectedRadioButtonId == R.id.rbCashOnDelivery) {
+                        completeOrder();
+                    } else {
+                        Toast.makeText(CheckoutActivity.this, "Please select a payment method", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
@@ -108,9 +130,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 Toast.makeText(CheckoutActivity.this, "Could not find Cart", Toast.LENGTH_SHORT).show();
             }
         });
-
-        String totalDisplay = "$" + int_amount;
-        //tvTotalPrice.setText(totalDisplay);
     }
 
     private void fetchCartItem(String productId, int quantity){
@@ -130,6 +149,8 @@ public class CheckoutActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 
                     int_amount = int_amount + total;
+
+                    tvTotalPrice.setText("$" + int_amount);
                 }
             }
 
@@ -140,7 +161,46 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
+    //Cash on delivery order logic
+    private void completeOrder(){
+        String userId = auth.getUid();
+        String orderId = database.child("orders").push().getKey();
+        LocalDate date = LocalDate.now();
 
+        if (orderId != null){
+            HashMap<String,Object> orderData = new HashMap<>();
+            orderData.put("userId", userId);
+            orderData.put("orderId", orderId);
+            orderData.put("cartItems",cartItems);
+            orderData.put("totalPrice", int_amount);
+            orderData.put("status", "pending");
+            orderData.put("date", date.toString());
+            orderData.put("payment", "Cash on delivery");
+
+            database.child("orders").child(orderId).setValue(orderData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    database.child("users").child(userId).child("orders").setValue(orderId).addOnCompleteListener(updateTask -> {
+                        if (updateTask.isSuccessful()) {
+                            database.child("users").child(userId).child("cart").removeValue().addOnCompleteListener(removeTask -> {
+                                if (removeTask.isSuccessful()) {
+                                    Toast.makeText(this, "Order placed successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CheckoutActivity.this, BuyerOrdersActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(this, "Failed to remove cart", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(this, "Failed to update user cart", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(this, "Failed to place order", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
 
 
@@ -212,3 +272,4 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 }
+

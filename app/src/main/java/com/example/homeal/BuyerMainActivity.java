@@ -118,6 +118,7 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(BuyerMainActivity.this, BuyerOrdersActivity.class);
+                    startActivity(intent);
                 }
             });
 

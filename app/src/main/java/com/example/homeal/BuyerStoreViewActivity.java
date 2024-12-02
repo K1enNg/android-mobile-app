@@ -35,6 +35,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
     DatabaseReference database;
     FirebaseAuth auth;
     String storeId;
+    String storeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +59,14 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
         adapter = new ProductBuyerViewAdapter(this, productList, auth.getUid(), database);
         listView.setAdapter(adapter);
 
+        // Update the page content based on the store ID
+        updatePage();
+
         btnChekout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BuyerStoreViewActivity.this, CheckoutActivity.class);
+                intent.putExtra("STORE_NAME", storeName);
                 startActivity(intent);
             }
         });
@@ -73,8 +78,6 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
             }
         });
 
-        // Update the page content based on the store ID
-        updatePage();
     }
 
     private void updatePage(){
@@ -83,7 +86,7 @@ public class BuyerStoreViewActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        String storeName = snapshot.child("storeName").getValue(String.class);
+                        storeName = snapshot.child("storeName").getValue(String.class);
                         tvStoreName.setText(storeName);
 
                         for (DataSnapshot productSnapshot : snapshot.child("products").getChildren()) {

@@ -58,7 +58,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private String clientSecret;
     private Stripe stripe;
     String amount;
-    public Double int_amount = 0.0;
+    Double int_amount = 0.0;
+    String storeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +74,7 @@ public class CheckoutActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         rgPaymentOptions = findViewById(R.id.rgPaymentOptions);
         btnPayNow = findViewById(R.id.btnPayNow);
-
-
+        storeName = getIntent().getStringExtra("STORE_NAME");
 
         database = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
@@ -169,8 +169,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         if (orderId != null){
             HashMap<String,Object> orderData = new HashMap<>();
-            orderData.put("userId", userId);
-            orderData.put("orderId", orderId);
+            orderData.put("storeName", storeName);
             orderData.put("cartItems",cartItems);
             orderData.put("totalPrice", int_amount);
             orderData.put("status", "pending");
@@ -179,7 +178,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
             database.child("orders").child(orderId).setValue(orderData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()){
-                    database.child("users").child(userId).child("orders").setValue(orderId).addOnCompleteListener(updateTask -> {
+                    database.child("users").child(userId).child("orders").child(orderId).setValue(true).addOnCompleteListener(updateTask -> {
                         if (updateTask.isSuccessful()) {
                             database.child("users").child(userId).child("cart").removeValue().addOnCompleteListener(removeTask -> {
                                 if (removeTask.isSuccessful()) {

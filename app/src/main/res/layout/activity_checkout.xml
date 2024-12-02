@@ -19,8 +19,6 @@
         android:text="Cart Summary"
         android:layout_marginBottom="20dp"/>
 
-    <!-- Payment Button -->
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
@@ -51,31 +49,85 @@
             android:textAlignment="center"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvPaymentMethod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Payment Method"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
-
-    <RadioGroup
-        android:id="@+id/rgPaymentOptions"
+    <LinearLayout
+        android:id="@+id/llPaymentMethod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RadioButton
-            android:id="@+id/rbCreditCard"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvPaymentMethod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Credit Card" />
-        <RadioButton
-            android:id="@+id/rbCashOnDelivery"
-            android:layout_width="wrap_content"
+            android:text="Select Payment Method"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/rgPaymentOptions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cash on Delivery" />
-    </RadioGroup>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/rbCreditCard"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Credit Card" />
+
+                <ImageView
+                    android:id="@+id/ivCreditCardIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_credit_card"
+                    android:contentDescription="Credit Card Icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/rbPayPal"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="PayPal" />
+
+                <ImageView
+                    android:id="@+id/ivPayPalIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_paypal"
+                    android:contentDescription="PayPal Icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbCashOnDelivery"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Cash on Delivery" />
+            </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnPayNow"

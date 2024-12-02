@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/buyer_main_bg"
+    android:padding="16dp">
 
     <LinearLayout
         android:id="@+id/searchContainer"
@@ -10,35 +11,43 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp">
+
         <Button
             android:id="@+id/btnViewOrders"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="View Orders"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:textColor="@android:color/white"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:paddingVertical="12dp" />
+
         <Button
             android:id="@+id/btnLogOff"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="LogOff"
+            android:text="Log Off"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:textColor="@android:color/white"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:paddingVertical="12dp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnBrowseProducts"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Browse Products"
         android:backgroundTint="@android:color/holo_green_dark"
         android:textColor="@android:color/white"
+        android:elevation="4dp"
+        android:paddingVertical="12dp"
         android:layout_below="@id/searchContainer"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/tvRecommendedStores"
@@ -52,27 +61,25 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="16dp" />
 
-    <!-- SupportMapFragment for the map -->
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="12dp"
         android:layout_below="@id/tvRecommendedStores"
-        android:layout_marginTop="16dp" />
+        android:elevation="4dp"
+        android:background="@drawable/rounded_card_background"
+        android:layout_margin="8dp" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/map"
-        android:layout_margin="8dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:clipToPadding="false"
         android:padding="8dp"
-        android:scrollbars="vertical" />
-
-
+        android:scrollbars="vertical"
+        android:elevation="4dp" />
 </RelativeLayout>

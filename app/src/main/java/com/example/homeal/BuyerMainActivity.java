@@ -36,7 +36,7 @@ import android.location.Address;
 
 public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private Button btnViewOrders, btnLogOff;
+    private Button btnViewOrders, btnLogout;
     private GoogleMap mMap;
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
@@ -54,7 +54,7 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
         setContentView(R.layout.activity_buyer_main);
 
         btnViewOrders = findViewById(R.id.btnViewOrders);
-        btnLogOff = findViewById(R.id.btnLogOff);
+        btnLogout = findViewById(R.id.btnLogout);
 
         //initializing store display components
         listView = findViewById(R.id.listView);
@@ -122,11 +122,14 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
                 }
             });
 
-            // Logoff button
-            btnLogOff.setOnClickListener(new View.OnClickListener() {
+            // Logout button
+            btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    auth.signOut();
+                    Intent intent = new Intent(BuyerMainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }
@@ -176,9 +179,6 @@ public class BuyerMainActivity extends AppCompatActivity implements OnMapReadyCa
                 Log.e(TAG, "Failed to convert address to coordinates: " + address);
             }
         }
-
-        // Show a Toast with the number of updated stores
-        Toast.makeText(this, "Map updated with " + storeData.size() + " stores", Toast.LENGTH_SHORT).show();
 
         // Center the camera on the last added marker, if it exists
         if (!storeData.isEmpty()) {

@@ -41,9 +41,6 @@
             android:name=".BuyerMainActivity"
             android:exported="false" />
         <activity
-            android:name=".BrowseProductActivity"
-            android:exported="false" />
-        <activity
             android:name=".ManageProductInfoActivity"
             android:exported="false" />
         <activity

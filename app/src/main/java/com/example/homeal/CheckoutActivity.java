@@ -211,9 +211,9 @@ public class CheckoutActivity extends AppCompatActivity {
         String backendUrl = "http://10.0.2.2:4242/create-payment-intent"; // Replace with your backend endpoint
 
         HashMap<String, Object> payload = new HashMap<>();
-        int_amount *= 100;
-        amount = Double.toString(int_amount);
-        payload.put("amount", amount); // Amount in cents (e.g., $20.00)
+        int_amount = int_amount * 100;
+
+        payload.put("amount",int_amount); // Amount in cents (e.g., $20.00)
         payload.put("currency", "usd");
 
         JSONObject jsonPayload = new JSONObject(payload);

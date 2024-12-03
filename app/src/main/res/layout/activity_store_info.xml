@@ -15,6 +15,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/backward_button"
+        android:background="@drawable/rounded_background"
         android:contentDescription="Back button"
         android:clickable="true"
         android:focusable="true"

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:background="@drawable/login_background">
 
     <TextView
@@ -13,8 +13,10 @@
         android:layout_height="wrap_content"
         android:text="Manage Your Store"
         android:textColor="@color/white"
+        android:background="@drawable/rounded_background"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:paddingHorizontal="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="32dp"/>
 
@@ -38,9 +40,20 @@
         android:padding="12dp"
         android:layout_marginBottom="24dp"/>
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp" />
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:backgroundTint="@android:color/black"
+        android:textColor="@android:color/white"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp"/>
+
 
 </LinearLayout>

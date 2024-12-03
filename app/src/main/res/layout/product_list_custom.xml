@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="#3F00BFFF"
         android:textColor="@android:color/white" />
 
     <Button
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:backgroundTint="@android:color/holo_red_dark"
+        android:backgroundTint="#5DFF0000"
         android:textColor="@android:color/white"
         android:layout_marginStart="8dp" />
 

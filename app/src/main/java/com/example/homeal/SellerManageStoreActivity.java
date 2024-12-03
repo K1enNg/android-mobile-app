@@ -30,7 +30,7 @@ import java.util.List;
 public class SellerManageStoreActivity extends AppCompatActivity {
 
     TextView tvStoreName;
-    Button btnManageInfo, btnAddProduct;
+    Button btnManageInfo, btnAddProduct, btnLogout;
     ListView listView;
     ProductManageStoreAdapter adapter;
     List<Product> productList;
@@ -48,6 +48,7 @@ public class SellerManageStoreActivity extends AppCompatActivity {
         btnManageInfo = findViewById(R.id.btnManageInfo);
         btnAddProduct = findViewById(R.id.btnAddProduct);
         listView = findViewById(R.id.listView);
+        btnLogout = findViewById(R.id.btnLogout);
         storeId = getIntent().getStringExtra("STORE");
 
         productList = new ArrayList<>();
@@ -65,6 +66,15 @@ public class SellerManageStoreActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SellerManageStoreActivity.this, StoreInfo.class);
                 intent.putExtra("STORE", storeId);
+                startActivity(intent);
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent = new Intent(SellerManageStoreActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

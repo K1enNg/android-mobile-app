@@ -26,7 +26,7 @@ import java.util.HashMap;
 public class CreateStoreActivity extends AppCompatActivity {
 
     EditText etStoreName, etStoreAddress, etStoreDescription, etStoreContact;
-    Button btnSubmitStore;
+    Button btnSubmitStore, btnLogout;
     DatabaseReference database;
     FirebaseAuth auth;
 
@@ -41,6 +41,7 @@ public class CreateStoreActivity extends AppCompatActivity {
         etStoreDescription = findViewById(R.id.etStoreDescription);
         etStoreContact = findViewById(R.id.etStoreContact);
         btnSubmitStore = findViewById(R.id.btnSubmitStore);
+        btnLogout = findViewById(R.id.btnLogout);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
@@ -49,6 +50,14 @@ public class CreateStoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 submitStore();
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                finish();
             }
         });
     }

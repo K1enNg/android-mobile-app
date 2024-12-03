@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:text="Product Name"
         android:textSize="16sp"
-        android:layout_gravity="start"
         android:layout_weight="1"/>
 
     <TextView
@@ -22,7 +21,6 @@
         android:layout_height="wrap_content"
         android:text="Quantity: "
         android:textSize="16sp"
-        android:layout_gravity="center"
         android:layout_weight="1"/>
 
     <TextView
@@ -31,7 +29,6 @@
         android:layout_height="wrap_content"
         android:text="$0.00"
         android:textSize="16sp"
-        android:layout_gravity="end"
         android:layout_weight="1"/>
 
 </LinearLayout>

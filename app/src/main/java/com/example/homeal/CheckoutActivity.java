@@ -45,7 +45,7 @@ import okhttp3.Response;
 public class CheckoutActivity extends AppCompatActivity {
 
     TextView tvTotalPrice;
-    Button btnPayNow;
+    Button btnPayNow, btnContinueShopping;
     ListView listView;
     RadioGroup rgPaymentOptions;
     BuyerCartViewAdapter adapter;
@@ -75,6 +75,7 @@ public class CheckoutActivity extends AppCompatActivity {
         rgPaymentOptions = findViewById(R.id.rgPaymentOptions);
         btnPayNow = findViewById(R.id.btnPayNow);
         storeName = getIntent().getStringExtra("STORE_NAME");
+        btnContinueShopping = findViewById(R.id.btnContinueShopping);
 
         database = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
@@ -110,6 +111,13 @@ public class CheckoutActivity extends AppCompatActivity {
                 }
             });
         }
+
+        btnContinueShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void updateCartDisplay(){

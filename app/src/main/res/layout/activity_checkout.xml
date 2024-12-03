@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/white"
-    android:padding="16dp">
+    android:background="@drawable/buyer_main_bg"
+    android:padding="35dp">
 
     <ImageView
         android:layout_width="35dp"
@@ -28,25 +28,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp"
-        android:background="@android:color/white">
+        android:padding="20dp">
         <TextView
 
             android:id="@+id/tvProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total: "
+            android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textStart"/>
         <TextView
             android:id="@+id/tvTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$0.00"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:textAlignment="center"/>
+            android:textAlignment="textStart"/>
     </LinearLayout>
 
     <LinearLayout
@@ -79,12 +80,6 @@
                 android:text="Credit Card" />
 
             <RadioButton
-                android:id="@+id/rbPayPal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PayPal" />
-
-            <RadioButton
                 android:id="@+id/rbCashOnDelivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,5 +98,15 @@
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnContinueShopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue Shopping"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:backgroundTint="@color/black"
         android:layout_marginBottom="16dp" />
 </LinearLayout>

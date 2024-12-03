@@ -19,7 +19,7 @@
             android:id="@+id/ivStoreImage"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/logo1"
             android:contentDescription="Store Image"
             android:layout_marginEnd="8dp" />
 
